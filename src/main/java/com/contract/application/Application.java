@@ -1,13 +1,13 @@
-package com.contractapp.contractapp;
+package com.contract.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ContractappApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ContractappApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }

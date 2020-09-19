@@ -1,10 +1,10 @@
-package com.contractapp.contractapp;
+package com.contract.application;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ContractappApplicationTests {
+class ApplicationTests {
 
 	@Test
 	void contextLoads() {
