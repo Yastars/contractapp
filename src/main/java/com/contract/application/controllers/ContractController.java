@@ -22,8 +22,9 @@ public class ContractController {
     @GetMapping("")
     private List<Contract> getContracts(){
         for (Contract contract : contractService.getContracts()) {
-            //contract
-            System.out.println(contract);
+            
+            //System.out.println(contract.getId());
+            
         }
         return contractService.getContracts();
     }

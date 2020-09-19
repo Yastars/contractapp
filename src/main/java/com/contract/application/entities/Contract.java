@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.lang.Nullable;
 
 import lombok.AllArgsConstructor;
@@ -40,11 +42,16 @@ public class Contract {
     @Column
     private String description;
     
-    // @Nullable
-    // @ManyToOne
-    // @JoinColumn(referencedColumnName="id")
-    // private Contract parentContract;
+    @Nullable
+    @ManyToOne
+    @JoinColumn(name="parent_contract", referencedColumnName="id")
+    private Contract parent_contract;
 
-    // @OneToMany(mappedBy = "parentContract", cascade = CascadeType.ALL)
-    // private List<Contract> children;
+    @OneToMany(mappedBy = "parent_contract", cascade = CascadeType.ALL)
+    private List<Contract> children;
+
+    @JsonIgnore
+    public List<Contract> getChildren() {
+        return this.children;
+    }
 }
