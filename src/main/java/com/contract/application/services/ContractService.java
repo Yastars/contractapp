@@ -13,12 +13,12 @@ public class ContractService {
     @Autowired
     private ContractRepository contractRepository;
 
-    public List<Contract> getContracts() {
+    public List<Contract> findAll() {
         return this.contractRepository.findAll();
     }
 
     public Contract findById(int id) {
         return this.contractRepository.findById(id);
     }
-    
+
 }
