@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -59,10 +61,22 @@ public class Contract {
     @OneToMany(mappedBy = "parent_contract", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Contract> children;
 
+
+    @Nullable
+    @ManyToMany
+    @JoinTable(
+			  name = "company_contract",
+			  joinColumns = @JoinColumn(name = "contract_id"),
+			  inverseJoinColumns = @JoinColumn(name = "company_id"))
+    private List<Company> companies;
+
+
     //@JsonBackReference
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public List<Contract> getChildren() {
     	return this.children;
     }
+
+
 
 }

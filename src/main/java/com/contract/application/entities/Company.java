@@ -41,4 +41,9 @@ public class Company {
     @Column
     private String name;
 
+    @JsonIgnore
+    @Nullable
+    @ManyToMany(mappedBy = "companies")
+    private List<Contract> contracts;
+
 }

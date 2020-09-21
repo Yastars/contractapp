@@ -4,7 +4,20 @@
     <div *ngIf="currentContract" class="col-2">
         ID : {{ currentContract.id }}
         Title : {{ currentContract.title }}
-        Description : {{ currentContract.description }}
+        Description : {{ currentContract.description }} <br/>
+        
+        
+        <ng-container *ngIf="currentContract.companies.length>0; else elseTemplate">
+            List Of Companies :
+            <ul>
+                <li *ngFor="let company of currentContract.companies">{{ company.id }} - {{ company.name }} </li>
+            </ul>
+        </ng-container>
+        <ng-template #elseTemplate>
+            No Company
+            <img width="240px" src="assets/images/cantfind.jpg"/>
+        </ng-template>
+        
     </div>
     <div [class]="(currentContract) ? 'col-10' : 'col-12'" >
         <organization-chart chartClass="myChart" [datasource]="ds" [nodeTemplate]="myNodeTemplate">
