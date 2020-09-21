@@ -1,0 +1,21 @@
+<!-- <organization-chart [select]="selectNode()" [nodeHeading]="nodeHeading" [nodeContent]="nodeContent" *ngIf="ds" [datasource]="ds"></organization-chart> -->
+
+<div class="row">
+    <div *ngIf="currentContract" class="col-2">
+        ID : {{ currentContract.id }}
+        Title : {{ currentContract.title }}
+        Description : {{ currentContract.description }}
+    </div>
+    <div [class]="(currentContract) ? 'col-10' : 'col-12'" >
+        <organization-chart chartClass="myChart" [datasource]="ds" [nodeTemplate]="myNodeTemplate">
+        </organization-chart>
+    </div>
+</div>
+
+
+<ng-template  #myNodeTemplate let-nodeData="datasource">
+        <div  (click)="selectNode(nodeData)">
+            <div class="position">{{nodeData.title}}</div>
+            <div class="fullname">{{nodeData.description}}</div>
+        </div>
+</ng-template>

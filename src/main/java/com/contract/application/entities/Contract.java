@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import com.contract.application.serializers.ContractSerializer;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -55,10 +56,11 @@ public class Contract {
     @JoinColumn(name="parent_contract", referencedColumnName="id")
     private Contract parent_contract;
 
-    @OneToMany(mappedBy = "parent_contract", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "parent_contract", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Contract> children;
 
     //@JsonBackReference
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public List<Contract> getChildren() {
     	return this.children;
     }
